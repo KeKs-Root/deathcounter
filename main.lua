@@ -34,7 +34,6 @@ function sendToDiscord(title, message, color, user, identifier)
     local embed = {{
         ["author"] = {
             ["name"] = user,
-            ["icon_url"] = "https://hatrabbits.com/wp-content/uploads/2017/01/random.jpg"
         },
         ["color"] = color,
         ["title"] = "**" .. title .. "**",
@@ -66,4 +65,5 @@ RegisterCommand("resetdeaths", function(source, args)
         MySQL.Async.execute("UPDATE users SET `deathcounter` = 0;")
         xsourcePlayer.showNotification(Config.DeathCounterAllUsers)
     end
+    print(xsourcePlayer.getName().." reset all deaths.")
 end, true)
