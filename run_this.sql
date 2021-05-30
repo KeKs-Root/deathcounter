@@ -1,0 +1,1 @@
+ALTER TABLE users ADD COLUMN deathcounter INT(10) NOT NULL DEFAULT '0';
