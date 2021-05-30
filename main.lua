@@ -67,3 +67,21 @@ RegisterCommand("resetdeaths", function(source, args)
     end
     print(xsourcePlayer.getName().." reset all deaths.")
 end, true)
+
+RegisterCommand('deaths', function(source, args)
+
+    local xPlayer = ESX.GetPlayerFromId(source)
+
+    MySQL.Async.fetchAll("SELECT deathcounter FROM users WHERE identifier = @identifier", {
+        ['@identifier'] = xPlayer.getIdentifier()
+    }, function(result)
+    
+        TriggerClientEvent('chat:addMessage', {
+            color = { 255, 255, 255 },
+            multiline = true,
+            args = {xPlayer.getName(), "Your deaths: "..result[1].deathcounter}
+        })
+    end)
+
+
+end, false)
